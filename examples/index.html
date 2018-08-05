@@ -11,14 +11,19 @@
   <script src="../dist/spotify-wrapper.umd.js"></script>
 
   <script>
-    const albums = spotifyWrapper.searchAlbums('Incubus');
+    const spotify = new SpotifyWrapper({
+      token: 'BQDqZFcJIOYxg6Yz-1_bqMyI0ifTtp-0rQQ9ye9IEzn4mf99Y62811P1ZHV6Vy2pIJPwFSHaDaUVYTLZ01jeEEXqfWZcDYzzAPIKUtIfuHfNv9Sy5PEnSFK6gBIkGgRnF0D9z8IVwGtUZt4'
+    })
+
+    const albums = spotify.search.albums('nirvana');
     const albumsEl = document.getElementById('albums');
+    console.log(albums)
 
     albums.then(data => {
       markup = data.albums.items.map(item =>
         `<img src='${item.images[0].url}' alt='${item.name}' />`
       ).join('');
-      //console.log(markup);
+      console.log(markup);
 
       albumsEl.innerHTML = markup;
     })
